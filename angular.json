@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "parabeyin"
+    }
+  },
+  "defaultProject": "parabeyin",
+  "cli": {
+    "analytics": false
+  }
 }
