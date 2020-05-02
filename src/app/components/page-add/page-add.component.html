@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <h1 class="mt-4">Create Page</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+        <li class="breadcrumb-item ">Pages</li>
+        <li class="breadcrumb-item active">Create</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            Create Page
+        </div>
+        <div class="card-body">
+            <form #form="ngForm" (ngSubmit)="savePage()">
+                <div class="form-group row">
+                  <label for="title" class="col-sm-2 col-form-label">Title</label>
+                  <div class="col-sm-10">
+                    <input 
+                        type="text"
+                        class="form-control"
+                        id="title"
+                        #title="ngModel"
+                        [class.is-invalid]="title.invalid && title.touched"
+                        [(ngModel)]="page.title"
+                        required
+                        pattern=".*\S+.*"
+                        name="title">
+                    <div class="validation-error" *ngIf="title.invalid && title.touched">Title field is required</div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="slug" class="col-sm-2 col-form-label">Slug</label>
+                    <div class="col-sm-10">
+                        <input 
+                            type="text"
+                            class="form-control"
+                            id="slug"
+                            #slug="ngModel"
+                            [class.is-invalid]="slug.invalid && slug.touched"
+                            required
+                            pattern=".*\S+.*"
+                            [(ngModel)]="page.slug"
+                            name="slug">
+                        <div class="validation-error" *ngIf="slug.invalid && slug.touched">Slug field is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="content" class="col-sm-2 col-form-label">Content</label>
+                    <div class="col-sm-10">
+                        <textarea 
+                            name="content" 
+                            class="form-control"
+                            id="content" 
+                            [(ngModel)]="page.content"
+                            #content="ngModel"
+                            [class.is-invalid]="content.invalid && content.touched"
+                            required
+                            pattern=".*\S+.*"
+                            cols="30" 
+                            rows="10">
+                        </textarea>
+                        <div class="validation-error" *ngIf="content.invalid && content.touched">Content field is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="status" class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" [(ngModel)]="page.active" name="active" [checked]="page.active" id="status" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2 col-sm-offset-10">
+                        <button type="submit" [disabled]="form.invalid" class="btn btn-success" style="padding-left: 50px; padding-right:50px;">Save</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>

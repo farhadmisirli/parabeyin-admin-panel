@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <h1 class="mt-4">Pages</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+        <li class="breadcrumb-item active">Pages</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            Page list
+            <a href="/pages/create" class="btn btn-success" role="button" style="float: right !important;"> <i class="fas fa-plus"></i> Create Page</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Title</th>
+                            <th>Slug</th>
+                            <th>Content</th>
+                            <th>Active</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let page of pages; let index = index;">
+                            <td>{{ index+1 }}</td>
+                            <td>{{ page.title }}</td>
+                            <td>{{ page.slug }}</td>
+                            <td>{{ page.content }}</td>
+                            <td><span class="label label-{{ page.active ? 'success' : 'danger' }}">{{ page.active ? "Enable" : "Disable" }}</span></td>
+                            <td>
+                                <a href="/pages/{{page.id}}"><i class="fas fa-edit"></i></a>
+                                <a (click)="deletePage(page.id)" style="margin-left: 10px;"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
